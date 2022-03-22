@@ -12,6 +12,7 @@ app.use(express.json());
 const db = mysql.createConnection(
   {
     host: "localhost",
+    // port: 3306,
     // Your MySQL username,
     user: "root",
     // Your MySQL password
@@ -21,17 +22,17 @@ const db = mysql.createConnection(
   console.log("Connected to the election database.")
 );
 
-//   db.query(`SELECT * FROM candidates`, (err, rows) => {
-//     console.log(rows);
-//   });
+  db.query(`SELECT * FROM candidates`, (err, rows) => {
+    console.log(rows);
+  });
 
 // GET a single candidate
-db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
-  if (err) {
-    console.log(err);
-  }
-  console.log(row);
-});
+// db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
+//   if (err) {
+//     console.log(err);
+//   }
+//   console.log(row);
+// );}
 
 // Delete a candidate
 // db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
@@ -42,16 +43,16 @@ db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
 // });
 
 // Create a candidate
-const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected) 
-              VALUES (?,?,?,?)`;
-const params = [1, 'Ronald', 'Firbank', 1];
+// const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected) 
+//               VALUES (?,?,?,?)`;
+// const params = [1, 'Ronald', 'Firbank', 1];
 
-db.query(sql, params, (err, result) => {
-  if (err) {
-    console.log(err);
-  }
-  console.log(result);
-});
+// db.query(sql, params, (err, result) => {
+//   if (err) {
+//     console.log(err);
+//   }
+//   console.log(result);
+// });
 
 app.get("/", (req, res) => {
   res.json({
